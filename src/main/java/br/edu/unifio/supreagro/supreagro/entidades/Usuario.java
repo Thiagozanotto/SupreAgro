@@ -1,7 +1,18 @@
 package br.edu.unifio.supreagro.supreagro.entidades;
 
-import javax.persistence.Entity;
+import lombok.Data;
 
-@Entity
+import javax.persistence.*;
+
+@Entity @Data
 public class Usuario {
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(nullable = false, unique = true)
+    private String usuario;
+
+    @Column
+    private String senha;
 }
