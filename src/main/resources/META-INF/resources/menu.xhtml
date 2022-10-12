@@ -14,16 +14,22 @@
 </h:head>
 
 <h:body>
-    <h:form>
-        <p:menubar>
+        <div class="card">
+            <h:form>
+                <p:megaMenu orientation="horizontal" autoDisplay="false">
+                    <p:menuitem value="Menu" outcome="dashboard.xhtml?faces-redirect=true" icon="pi pi-fw pi-cog" />
 
-            <p:submenu label="Usuario">
-                <p:menuitem value="Listar" outcome="usuario-listagem.xhtml?faces-redirect=true" />
-                <p:menuitem value="Cadastrar" outcome="usuario-novo.xhtml?faces-redirect=true" />
-            </p:submenu>
-
-        </p:menubar>
-    </h:form>
+                    <p:submenu label="Usuarios" icon="pi pi-fw pi-users">
+                        <p:column>
+                            <p:submenu label="Funções">
+                                <p:menuitem value="Listar" outcome="usuario-listagem.xhtml?faces-redirect=true" />
+                                <p:menuitem value="Cadastrar" outcome="usuario-novo.xhtml?faces-redirect=true" />
+                            </p:submenu>
+                        </p:column>
+                    </p:submenu>
+                </p:megaMenu>
+            </h:form>
+        </div>
 </h:body>
 
 </html>
