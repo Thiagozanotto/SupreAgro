@@ -17,13 +17,21 @@
         <div class="card">
             <h:form>
                 <p:megaMenu orientation="horizontal" autoDisplay="false">
-                    <p:menuitem value="Menu" outcome="dashboard.xhtml?faces-redirect=true" icon="pi pi-fw pi-cog" />
+                    <p:menuitem value="Menu" outcome="dashboard.xhtml?faces-redirect=true" icon="pi pi-fw pi-home" />
 
                     <p:submenu label="Usuarios" icon="pi pi-fw pi-users">
                         <p:column>
                             <p:submenu label="Funções">
                                 <p:menuitem value="Listar" outcome="usuario-listagem.xhtml?faces-redirect=true" />
                                 <p:menuitem value="Cadastrar" outcome="usuario-novo.xhtml?faces-redirect=true" />
+                            </p:submenu>
+                        </p:column>
+                    </p:submenu>
+                    <p:submenu label="Veículos" icon="pi pi-fw pi-car">
+                        <p:column>
+                            <p:submenu label="Funções">
+                                <p:menuitem value="Listar" outcome="veiculo-listagem.xhtml?faces-redirect=true" />
+                                <p:menuitem value="Cadastrar" outcome="veiculo-novo.xhtml?faces-redirect=true"/>
                             </p:submenu>
                         </p:column>
                     </p:submenu>
