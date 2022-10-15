@@ -33,8 +33,19 @@
                                 <p:menuitem value="Listar" outcome="veiculo-listagem.xhtml?faces-redirect=true" />
                                 <p:menuitem value="Cadastrar" outcome="veiculo-novo.xhtml?faces-redirect=true"/>
                             </p:submenu>
+
                         </p:column>
                     </p:submenu>
+
+                    <p:submenu label="Vendedor" icon="pi pi-fw pi-users">
+                        <p:column>
+                            <p:submenu label="Funções">
+                                <p:menuitem value="Listar" outcome="vendedor-listagem.xhtml?faces-redirect=true" />
+                                <p:menuitem value="Cadastrar" outcome="vendedor-novo.xhtml?faces-redirect=true" />
+                            </p:submenu>
+                        </p:column>
+                    </p:submenu>
+
                 </p:megaMenu>
             </h:form>
         </div>

@@ -1,8 +1,9 @@
 package br.edu.unifio.supreagro.supreagro.beans;
 
+import br.edu.unifio.supreagro.supreagro.entidades.Usuario;
 import br.edu.unifio.supreagro.supreagro.entidades.Veiculo;
 import br.edu.unifio.supreagro.supreagro.entidades.Vendedor;
-import br.edu.unifio.supreagro.supreagro.repositorios.VeiculoRepository;
+import br.edu.unifio.supreagro.supreagro.repositorios.UsuarioRepository;
 import br.edu.unifio.supreagro.supreagro.repositorios.VendedorRepository;
 import lombok.Data;
 import org.omnifaces.util.Faces;
@@ -14,31 +15,40 @@ import org.springframework.stereotype.Component;
 import javax.faces.view.ViewScoped;
 import java.util.List;
 
-@Component @ViewScoped @Data
-public class VeiculoBean {
+@ViewScoped
+@Component
+@Data
+public class VendedorBean {
+    private Vendedor vendedor;
 
-    private List<Vendedor> vendedores;
-    private VendedorRepository vendedorRepository;
+    private List<Vendedor> vendedorList;
 
-    private Veiculo veiculo;
-    private List<Veiculo> veiculos;
-    @Autowired
-    private VeiculoRepository veiculoRepository;
+    @Autowired private VendedorRepository vendedorRepository;
+
+    private Usuario username;
+
+    private Usuario senha;
+
+    private List<Usuario> usuarioList;
+
+    private UsuarioRepository usuarioRepository;
 
     public void listar(){
-        veiculos = veiculoRepository.findAll();
+        vendedorList = vendedorRepository.findAll();
     }
     public void novo(){
-        veiculo = new Veiculo();
-        vendedores =  vendedorRepository.findAll();
+        vendedor = new Vendedor();
     }
-    public void salvar(){
-        try{
-            veiculoRepository.save(veiculo);
+    public void salvar() {
+        try {
+            vendedorRepository.save(vendedor);
             Messages.addFlashGlobalInfo("Registro salvo com sucesso!");
             Faces.navigate("veiculo-listagem.xhtml?faces-redirect=true");
-        }catch (DataIntegrityViolationException excecao) {
+        } catch (DataIntegrityViolationException excecao) {
             excecao.printStackTrace();
-            Messages.addFlashGlobalError("Registro já existe!");}
+            Messages.addFlashGlobalError("Registro já existe!");
+        }
     }
+
+
 }
