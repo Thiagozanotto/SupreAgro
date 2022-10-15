@@ -33,6 +33,16 @@
                 <p:datePicker maxlength="50" size="15" value="#{veiculoBean.veiculo.ano}" readonlyInput="true" requiredMessage="O campo Ano é obrigatório!"/>
             </h:panelGrid>
 
+            <h:panelGrid columns="1">
+            <p:outputLabel value="Vendedor"/>
+            <p:selectOneMenu value="#{veiculoBean.veiculo.vendedor}" converter="omnifaces.SelectItemsConverter"
+                             required="true" requiredMessage="O campo vendedor é obrigatória">
+                <f:selectItem noSelectionOption="true" itemLabel="Selecione um Vendedor"/>
+                <f:selectItems value="#{veiculoBean.vendedores}" var="cursorveiculo" itemLabel="#{cursorveiculo.nome}"
+                               itemValue="#{cursorveiculo}"/>
+            </p:selectOneMenu>
+            </h:panelGrid>
+
             <h:panelGrid columns="2">
                 <p:commandButton icon="pi pi-check" value="Salvar" actionListener="#{veiculoBean.salvar()}" update="mensagem"/>
                 <p:button value="Voltar" outcome="veiculo-listagem.xhtml?faces-redirect=true"/>

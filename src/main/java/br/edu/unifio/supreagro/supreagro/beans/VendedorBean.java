@@ -20,30 +20,25 @@ import java.util.List;
 @Data
 public class VendedorBean {
     private Vendedor vendedor;
-
-    private List<Vendedor> vendedorList;
-
+    private List<Vendedor> vendedores;
     @Autowired private VendedorRepository vendedorRepository;
 
-    private Usuario username;
-
-    private Usuario senha;
-
-    private List<Usuario> usuarioList;
-
+    private List<Usuario> usuarios;
+    @Autowired
     private UsuarioRepository usuarioRepository;
 
     public void listar(){
-        vendedorList = vendedorRepository.findAll();
+        vendedores = vendedorRepository.findAll();
     }
     public void novo(){
         vendedor = new Vendedor();
+        usuarios = usuarioRepository.findAll();
     }
     public void salvar() {
         try {
             vendedorRepository.save(vendedor);
             Messages.addFlashGlobalInfo("Registro salvo com sucesso!");
-            Faces.navigate("veiculo-listagem.xhtml?faces-redirect=true");
+            Faces.navigate("vendedor-listagem.xhtml?faces-redirect=true");
         } catch (DataIntegrityViolationException excecao) {
             excecao.printStackTrace();
             Messages.addFlashGlobalError("Registro já existe!");

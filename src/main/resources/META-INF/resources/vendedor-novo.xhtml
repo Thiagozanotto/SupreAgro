@@ -30,17 +30,17 @@
 
             <h:panelGrid columns="1">
                 <p:outputLabel value="Endereço" />
-                <p:datePicker maxlength="50" size="15" value="#{vendedorBean.vendedor.endereco}" readonlyInput="true" requiredMessage="O campo Ano é obrigatório!"/>
+                <p:inputText maxlength="50" size="15" value="#{vendedorBean.vendedor.endereco}" readonlyInput="true" requiredMessage="O campo Ano é obrigatório!"/>
             </h:panelGrid>
 
             <h:panelGrid columns="1">
-                <p:outputLabel value="Digite o login que será fornecido para o vendedor" />
-                <p:datePicker maxlength="50" size="15" value="#{vendedorBean.vendedor.username.usuario}" readonlyInput="true" requiredMessage="O campo Ano é obrigatório!"/>
-            </h:panelGrid>
-
-            <h:panelGrid columns="1">
-                <p:outputLabel value="Digite a senha que será fornecida:" />
-                <p:datePicker maxlength="50" size="15" value="#{vendedorBean.vendedor.username.senha}" readonlyInput="true" requiredMessage="O campo Ano é obrigatório!"/>
+                <p:outputLabel value="Usuário (vendedor)"/>
+                <p:selectOneMenu value="#{vendedorBean.vendedor.usuario}" converter="omnifaces.SelectItemsConverter"
+                                 required="true" requiredMessage="O campo Login do Vendedor é obrigatória">
+                    <f:selectItem noSelectionOption="true" itemLabel="Selecione um Vendedor"/>
+                    <f:selectItems value="#{vendedorBean.usuarios}" var="cursoruser" itemLabel="#{cursoruser.usuario}"
+                                   itemValue="#{cursoruser}"/>
+                </p:selectOneMenu>
             </h:panelGrid>
 
             <h:panelGrid columns="2">

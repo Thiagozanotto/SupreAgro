@@ -20,7 +20,7 @@
     <ui:include src="menu.xhtml"/>
 
     <h:form>
-        <p:dataTable value="#{vendedorBean.vendedorList}" var="cursor" paginator="true" rows="10">
+        <p:dataTable value="#{vendedorBean.vendedores}" var="cursor" paginator="true" rows="10">
             <f:facet name="header">
                 <h:outputText value="Vendedores" />
             </f:facet>
@@ -37,12 +37,12 @@
                 <h:outputText value="#{cursor.endereco}" />
             </p:column>
 
-            <p:column headerText="Username" sortBy="#{cursor.username.usuario}">
-                <h:outputText value="#{cursor.username.usuario}" />
+            <p:column headerText="Username" sortBy="#{cursor.usuario.usuario}">
+                <h:outputText value="#{cursor.usuario.usuario}" />
             </p:column>
 
-            <p:column headerText="Senha" sortBy="#{cursor.username.senha}">
-                <h:outputText value="#{cursor.username.senha}" />
+            <p:column headerText="Senha" sortBy="#{cursor.usuario.senha}">
+                <h:outputText value="#{cursor.usuario.senha}" />
             </p:column>
 
         </p:dataTable>

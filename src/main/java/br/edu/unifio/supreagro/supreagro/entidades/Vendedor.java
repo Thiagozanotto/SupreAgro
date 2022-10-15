@@ -15,11 +15,5 @@ public class Vendedor {
 
     @ManyToOne
     @JoinColumn(nullable = false)
-    private Usuario username;
-
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private Usuario senha;
-
-
+    private Usuario usuario;
 }

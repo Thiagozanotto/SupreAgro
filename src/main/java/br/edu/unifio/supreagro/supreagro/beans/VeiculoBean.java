@@ -18,6 +18,7 @@ import java.util.List;
 public class VeiculoBean {
 
     private List<Vendedor> vendedores;
+    @Autowired
     private VendedorRepository vendedorRepository;
 
     private Veiculo veiculo;
@@ -30,7 +31,7 @@ public class VeiculoBean {
     }
     public void novo(){
         veiculo = new Veiculo();
-        vendedores =  vendedorRepository.findAll();
+        vendedores = vendedorRepository.findAll();
     }
     public void salvar(){
         try{
