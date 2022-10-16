@@ -1,9 +1,10 @@
 package br.edu.unifio.supreagro.supreagro.beans;
 
+import br.edu.unifio.supreagro.supreagro.entidades.Categoria;
+import br.edu.unifio.supreagro.supreagro.entidades.Produto;
 import br.edu.unifio.supreagro.supreagro.entidades.Veiculo;
-import br.edu.unifio.supreagro.supreagro.entidades.Vendedor;
-import br.edu.unifio.supreagro.supreagro.repositorios.VeiculoRepository;
-import br.edu.unifio.supreagro.supreagro.repositorios.VendedorRepository;
+import br.edu.unifio.supreagro.supreagro.repositorios.CategoriaRepository;
+import br.edu.unifio.supreagro.supreagro.repositorios.ProdutoRepository;
 import lombok.Data;
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
@@ -14,29 +15,30 @@ import org.springframework.stereotype.Component;
 import javax.faces.view.ViewScoped;
 import java.util.List;
 
-@Component @ViewScoped @Data
-public class VeiculoBean {
+@Data @Component @ViewScoped
+public class ProdutoBean {
 
-    private List<Vendedor> vendedores;
+    private Produto produto;
     @Autowired
-    private VendedorRepository vendedorRepository;
-    private Veiculo veiculo;
-    private List<Veiculo> veiculos;
+    private ProdutoRepository produtoRepository;
+    private List<Produto> produtos;
+
+    private List<Categoria> categorias;
     @Autowired
-    private VeiculoRepository veiculoRepository;
+    private CategoriaRepository categoriaRepository;
 
     public void listar(){
-        veiculos = veiculoRepository.findAll();
+        produtos = produtoRepository.findAll();
     }
     public void novo(){
-        veiculo = new Veiculo();
-        vendedores = vendedorRepository.findAll();
+        produto = new Produto();
+        categorias = categoriaRepository.findAll();
     }
     public void salvar(){
         try{
-            veiculoRepository.save(veiculo);
+            produtoRepository.save(produto);
             Messages.addFlashGlobalInfo("Registro salvo com sucesso!");
-            Faces.navigate("veiculo-listagem.xhtml?faces-redirect=true");
+            Faces.navigate("produto-listagem.xhtml?faces-redirect=true");
         }catch (DataIntegrityViolationException excecao) {
             excecao.printStackTrace();
             Messages.addFlashGlobalError("Registro já existe!");}
