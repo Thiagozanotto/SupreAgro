@@ -1,7 +1,9 @@
 package br.edu.unifio.supreagro.supreagro.entidades;
 import lombok.Data;
+import org.primefaces.component.tieredmenu.TieredMenu;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.time.LocalDateTime;
 
 @Data @Entity
