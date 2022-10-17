@@ -33,6 +33,7 @@ private List<Vendedor> vendedorList;
 @Autowired
     VendedorRepository vendedorRepository;
 
+
     public void listar(){
         pedidoList = pedidoRepository.findAll();
     }
