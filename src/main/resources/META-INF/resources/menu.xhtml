@@ -19,6 +19,14 @@
                 <p:megaMenu orientation="horizontal" autoDisplay="false">
                     <p:menuitem value="Menu" outcome="dashboard.xhtml?faces-redirect=true" icon="pi pi-fw pi-home" />
 
+                    <p:submenu label="Rota" icon="pi pi-fw pi-calendar">
+                        <p:column>
+                            <p:submenu label="Funções">
+                                <p:menuitem value="Listar" outcome="rota-listagem.xhtml?faces-redirect=true" />
+                                <p:menuitem value="Cadastrar" outcome="rota-novo.xhtml?faces-redirect=true" />
+                            </p:submenu>
+                        </p:column>
+                    </p:submenu>
                     <p:submenu label="Usuarios" icon="pi pi-fw pi-users">
                         <p:column>
                             <p:submenu label="Funções">
