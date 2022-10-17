@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en-us"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<f:metadata>
+    <f:viewAction action="#{produtoBean.listar()}"/>
+</f:metadata>
+<h:head>
+    <title> Produtos </title>
+</h:head>
+
+<h:body>
+    <ui:include src="menu.xhtml"/>
+
+    <h:form>
+        <p:dataTable value="#{produtoBean.produtos}" var="cursor" paginator="true" rows="10">
+            <f:facet name="header">
+                <h:outputText value="Produtos" />
+            </f:facet>
+
+            <p:column headerText="Id" sprtBy="#{cursor.id}" filterBy="#{cursor.id}" filterMatchMode="contains">
+                <h:outputText value="#{cursor.id}"/>
+            </p:column>
+
+            <p:column headerText="Nome" sortBy="=#{cursor.nome}" filterBy="#{cursor.nome}" filterMatchMode="contains">
+                <h:outputText value="#{cursor.nome}" />
+            </p:column>
+
+            <p:column headerText="Preço" sortBy="=#{cursor.preco}" filterBy="#{cursor.preco}" filterMatchMode="contains">
+                <h:outputText value="#{cursor.preco}" />
+            </p:column>
+
+            <p:column headerText="Descrição" sortBy="=#{cursor.descricao}" filterBy="#{cursor.descricao}" filterMatchMode="contains">
+                <h:outputText value="#{cursor.descricao}" />
+            </p:column>
+
+        </p:dataTable>
+    </h:form>
+
+</h:body>
+</html>

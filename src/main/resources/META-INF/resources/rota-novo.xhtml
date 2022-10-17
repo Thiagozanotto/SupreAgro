@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en-us"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<f:metadata>
+    <f:viewAction action="#{rotaBean.novo()}"/>
+</f:metadata>
+<h:head>
+    <title> Cadastrar Rota </title>
+</h:head>
+
+<h:body>
+    <ui:include src="menu.xhtml"/>
+
+    <h:form>
+        <p:panel header="Cadastro de Rota">
+            <p:messages id="mensagem" closable="true" />
+
+            <h:panelGrid columns="1">
+                <p:outputLabel value="Local" />
+                <p:inputText maxlength="50" size="15" value="#{rotaBean.rota.local}" required="true" requiredMessage="O campo Local é obrigatório!"/>
+            </h:panelGrid>
+
+            <h:panelGrid columns="1">
+                <p:outputLabel value="Hora" />
+                <p:datePicker inline="flase" showTime="true" timeInput="true" maxlength="50" size="15" value="#{rotaBean.rota.hora}" required="true" requiredMessage="O campo Hora é obrigatório!"/>
+            </h:panelGrid>
+
+            <h:panelGrid columns="1">
+            <p:outputLabel value="Cliente"/>
+            <p:selectOneMenu value="#{rotaBean.rota.cliente}" converter="omnifaces.SelectItemsConverter"
+                             required="true" requiredMessage="O campo cliente é obrigatória">
+                <f:selectItem noSelectionOption="true" itemLabel="Selecione um Cliente"/>
+                <f:selectItems value="#{rotaBean.clientes}" var="cursorcli" itemLabel="#{cursorcli.nome}"
+                               itemValue="#{cursorcli}"/>
+            </p:selectOneMenu>
+            </h:panelGrid>
+            <h:panelGrid columns="1">
+                <p:outputLabel value="Vendedor"/>
+                <p:selectOneMenu value="#{rotaBean.rota.vendedor}" converter="omnifaces.SelectItemsConverter"
+                                 required="true" requiredMessage="O campo vendedor é obrigatória">
+                    <f:selectItem noSelectionOption="true" itemLabel="Selecione um Vendedor"/>
+                    <f:selectItems value="#{rotaBean.vendedores}" var="cursorvend" itemLabel="#{cursorvend.nome}"
+                                   itemValue="#{cursorvend}"/>
+                </p:selectOneMenu>
+            </h:panelGrid>
+            <h:panelGrid columns="1">
+                <p:outputLabel value="Veículo"/>
+                <p:selectOneMenu value="#{rotaBean.rota.veiculo}" converter="omnifaces.SelectItemsConverter"
+                                 required="true" requiredMessage="O campo veículo é obrigatória">
+                    <f:selectItem noSelectionOption="true" itemLabel="Selecione um Veículo"/>
+                    <f:selectItems value="#{rotaBean.veiculos}" var="cursorvei" itemLabel="#{cursorvei.modelo}"
+                                   itemValue="#{cursorvei}"/>
+                </p:selectOneMenu>
+            </h:panelGrid>
+
+            <h:panelGrid columns="2">
+                <p:commandButton icon="pi pi-check" value="Salvar" actionListener="#{rotaBean.salvar()}" update="mensagem"/>
+                <p:button value="Voltar" outcome="rota-listagem.xhtml?faces-redirect=true"/>
+            </h:panelGrid>
+
+        </p:panel>
+    </h:form>
+</h:body>
+</html>

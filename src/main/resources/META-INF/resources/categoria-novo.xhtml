@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en-us"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<f:metadata>
+    <f:viewAction action="#{categoriaBean.novo()}"/>
+</f:metadata>
+<h:head>
+    <title> Cadastrar Categoria </title>
+</h:head>
+
+<h:body>
+    <ui:include src="menu.xhtml"/>
+
+    <h:form>
+        <p:panel header="Cadastro de Categeoria">
+            <p:messages id="mensagem" closable="true" />
+
+            <h:panelGrid columns="1">
+                <p:outputLabel value="Categoria" />
+                    <p:inputText maxlength="50" size="15" value="#{categoriaBean.categoria.nome}" required="true" requiredMessage="O campo Nome é obrigatório!"/>
+            </h:panelGrid>
+
+            <h:panelGrid columns="1">
+            <p:outputLabel value="Descrição" />
+                <p:inputTextarea rows="3" cols="30" counter="display" maxlength="100" counterTemplate="{0} characters remaining." autoResize="true"
+                                 value="#{categoriaBean.categoria.descricao}" required="true" requiredMessage="O campo Descrição é obrigatório!"/>
+                <h:outputText id="display" class="block"/>
+           </h:panelGrid>
+
+            <h:panelGrid columns="2">
+                <p:commandButton icon="pi pi-check" value="Salvar" actionListener="#{categoriaBean.salvar()}" update="mensagem"/>
+                <p:button value="Voltar" outcome="categoria-listagem.xhtml?faces-redirect=true"/>
+            </h:panelGrid>
+
+        </p:panel>
+    </h:form>
+</h:body>
+</html>
