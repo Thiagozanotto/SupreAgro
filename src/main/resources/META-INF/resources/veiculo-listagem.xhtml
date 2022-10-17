@@ -33,7 +33,7 @@
                 <h:outputText value="#{cursor.modelo}" />
             </p:column>
 
-            <p:column headerText="Ano" sortBy="#{cursor.ano}">
+            <p:column headerText="Ano" sortBy="#{cursor.ano}" filterBy="#{cursor.ano}" filterMatchMode="contains">
                 <h:outputText value="#{cursor.ano}" />
             </p:column>
 

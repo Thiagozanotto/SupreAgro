@@ -17,7 +17,7 @@ public class Veiculo {
     private String modelo;
 
     @Column(nullable = false)
-    private LocalDate ano;
+    private String ano;
 
     @ManyToOne
     @JoinColumn(nullable = false)
