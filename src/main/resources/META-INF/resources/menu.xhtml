@@ -77,6 +77,14 @@
                     </p:submenu>
                 </p:column>
             </p:submenu>
+            <p:submenu label="Pedidos" icon="pi pi-fw pi-shopping-cart">
+                <p:column>
+                    <p:submenu label="Funções">
+                        <p:menuitem value="Listar" outcome="pedido-listagem.xhtml?faces-redirect=true" />
+                        <p:menuitem value="Cadastrar" outcome="pedido-novo.xhtml?faces-redirect=true" />
+                    </p:submenu>
+                </p:column>
+            </p:submenu>
         </p:megaMenu>
     </h:form>
 </h:body>

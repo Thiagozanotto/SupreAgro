@@ -10,4 +10,6 @@ public class Cliente {
     @Column(nullable = false)
     private String nome;
 
+    @ManyToOne @JoinColumn(nullable = false)
+    private Pedido pedido;
 }

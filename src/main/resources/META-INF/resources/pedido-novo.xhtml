@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en-us"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<f:metadata>
+    <f:viewAction action="#{pedidoBean.novo()}"/>
+</f:metadata>
+<h:head>
+    <title> Fazer Pedido </title>
+</h:head>
+
+<h:body>
+    <ui:include src="menu.xhtml"/>
+
+    <h:form>
+        <p:panel header="Fazer Pedido">
+            <p:messages id="mensagem" closable="true" />
+
+            <h:panelGrid columns="1">
+                <p:outputLabel value="Observação" />
+                <p:inputText maxlength="50" size="15" value="#{pedidoBean.pedido.observacao}" required="true" requiredMessage="O campo Observação é obrigatório!"/>
+            </h:panelGrid>
+
+            <h:panelGrid columns="1">
+                <p:outputLabel value="Valor Total" />
+                <p:inputNumber maxlength="50" size="15" value="#{pedidoBean.pedido.valorTotal}" required="true" requiredMessage="O campo Valor Total é obrigatório!" modifyValueOnWheel="false" />
+            </h:panelGrid>
+
+            <h:panelGrid columns="1">
+            <p:outputLabel value="Cliente"/>
+            <p:selectOneMenu value="#{pedidoBean.pedido.cliente}" converter="omnifaces.SelectItemsConverter"
+                             required="true" requiredMessage="O campo cliente é obrigatória">
+                <f:selectItem noSelectionOption="true" itemLabel="Selecione um Cliente"/>
+                <f:selectItems value="#{pedidoBean.clienteList}" var="cursorped" itemLabel="#{cursorped.nome}"
+                               itemValue="#{cursorped}"/>
+            </p:selectOneMenu>
+            </h:panelGrid>
+
+            <h:panelGrid columns="1">
+                <p:outputLabel value="Vendedor"/>
+                <p:selectOneMenu value="#{pedidoBean.pedido.vendedor}" converter="omnifaces.SelectItemsConverter"
+                                 required="true" requiredMessage="O campo vendedor é obrigatória">
+                    <f:selectItem noSelectionOption="true" itemLabel="Selecione um Vendedor"/>
+                    <f:selectItems value="#{pedidoBean.vendedorList}" var="cursorvend" itemLabel="#{cursorvend.nome}"
+                                   itemValue="#{cursorvend}"/>
+                </p:selectOneMenu>
+            </h:panelGrid>
+
+            <h:panelGrid columns="2">
+                <p:commandButton icon="pi pi-check" value="Salvar" actionListener="#{pedidoBean.salvar()}" update="mensagem"/>
+                <p:button value="Voltar" outcome="pedido-listagem.xhtml?faces-redirect=true"/>
+            </h:panelGrid>
+
+        </p:panel>
+    </h:form>
+</h:body>
+</html>
