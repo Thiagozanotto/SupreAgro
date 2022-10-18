@@ -1,8 +1,10 @@
 package br.edu.unifio.supreagro.supreagro.beans;
-import br.edu.unifio.supreagro.supreagro.entidades.Categoria;
+
 import br.edu.unifio.supreagro.supreagro.entidades.Cliente;
+
 import br.edu.unifio.supreagro.supreagro.entidades.Pedido;
 import br.edu.unifio.supreagro.supreagro.repositorios.ClienteRepository;
+
 import br.edu.unifio.supreagro.supreagro.repositorios.PedidoRepository;
 import lombok.Data;
 import org.omnifaces.util.Faces;
