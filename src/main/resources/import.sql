@@ -1,6 +1,6 @@
-insert into usuario (usuario, senha) values ("ThiagoUser","123");
-insert into usuario (usuario, senha) values ("FabricioUser","123");
-insert into usuario (usuario, senha) values ("HugoUser","123");
+insert into usuario (usuario, tipo, senha) values ("ThiagoUser","Vendedor","123");
+insert into usuario (usuario, tipo, senha) values ("FabricioUser","Recpcionista","123");
+insert into usuario (usuario,tipo,  senha) values ("HugoUser","Gerente","123");
 
 insert into vendedor (nome, endereco, usuario_id) values ("ThiagoVend","R. Primavera",1);
 insert into vendedor (nome, endereco, usuario_id) values ("FabricioVend","R. Flores",2);

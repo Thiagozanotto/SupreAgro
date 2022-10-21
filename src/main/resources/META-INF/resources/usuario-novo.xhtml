@@ -29,6 +29,11 @@
             </h:panelGrid>
 
             <h:panelGrid columns="1">
+                <p:outputLabel value="Tipo" />
+                <p:inputText maxlength="50" size="15" value="#{usuarioBean.usuario.tipo}" required="true" requiredMessage="O campo Tipo é obrigatório!"/>
+            </h:panelGrid>
+
+            <h:panelGrid columns="1">
                 <p:outputLabel value="Senha" />
                 <p:password maxlength="50" size="15" value="#{usuarioBean.usuario.senha}" required="true" requiredMessage="O campo Senha é obrigatório!"/>
             </h:panelGrid>

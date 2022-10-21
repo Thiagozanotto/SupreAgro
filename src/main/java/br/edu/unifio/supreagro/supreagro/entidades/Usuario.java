@@ -15,4 +15,8 @@ public class Usuario {
 
     @Column
     private String senha;
+
+    @Column(nullable = false)
+    private String tipo;
+
 }

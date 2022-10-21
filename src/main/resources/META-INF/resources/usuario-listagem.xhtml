@@ -33,6 +33,10 @@
                 <h:outputText value="#{cursor.usuario}" />
             </p:column>
 
+            <p:column headerText="Tipo" sprtBy="#{cursor.tipo}" filterBy="#{cursor.tipo}" filterMatchMode="contains">
+                <h:outputText value="#{cursor.tipo}"/>
+            </p:column>
+
             <p:column headerText="Senha" sprtBy="#{cursor.senha}" filterBy="#{cursor.senha}" filterMatchMode="contains">
                 <h:outputText value="#{cursor.senha}"/>
             </p:column>
