@@ -28,6 +28,44 @@
                 <p:inputTextarea rows="3" cols="30" counter="display" maxlength="100" counterTemplate="{0} characters remaining." autoResize="true"
                                  value="#{pedidoBean.pedido.observacao}" required="true" requiredMessage="O campo Obersavação é obrigatório!"/>
                 <h:outputText id="display" class="block"/>
+
+                <p:growl id="messages" showDetail="true"/>
+
+                <p:fileUpload mode="advanced"
+                              multiple="false"
+                              sizeLimit="102400" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                              invalidSizeMessage="Maximum file size allowed is 100 KB"
+                              invalidFileMessage="only gif | jpg | jpeg | png is allowed"
+                              update="messages cropperPanel"
+                              listener="#{cropBean.handleFileUpload}"/>
+
+                <p:outputPanel id="cropperPanel">
+
+                    <h:panelGrid columns="1" rendered="#{not empty cropBean.originalImageFile}">
+
+                        <p:commandButton value="Crop"
+                                         action="#{cropBean.crop}"
+                                         update="cropped messages" styleClass="my-3"/>
+
+                        <h:panelGrid columns="2" cellpadding="7">
+
+                            <p:imageCropper
+                                    value="#{cropBean.croppedImage}"
+                                    id="imageCropper" cache="false"
+                                    image="#{cropBean.image}"
+                                    initialCoords="50,50,150,100"
+                                    minSize="50,50" maxSize="350,350"/>
+
+                            <p:outputPanel id="cropped">
+                                <p:graphicImage cache="false"
+                                                rendered="#{not empty cropBean.croppedImage}"
+                                                value="#{cropBean.cropped}"/>
+                            </p:outputPanel>
+
+                        </h:panelGrid>
+
+                    </h:panelGrid>
+                </p:outputPanel>
             </h:panelGrid>
 
             <h:panelGrid>
