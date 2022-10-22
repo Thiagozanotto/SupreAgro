@@ -50,6 +50,16 @@ public class PedidoBean implements Serializable {
 
     public void adcionar(Produto cursor){ carrinho.add(cursor); }
     public void salvar(){
+
+        try {
+            pedidoRepository.save(pedido);
+            Messages.addFlashGlobalInfo("Registro salvo com sucesso!");
+            Faces.navigate("pedido-novo.xhtml?faces-redirect=true");
+        } catch (DataIntegrityViolationException excecao) {
+            excecao.printStackTrace();
+            Messages.addFlashGlobalInfo("Esse Pedido já existe!");
+        }
+
         for (Produto produto : carrinho){
 
             PedidoItem item = new PedidoItem();
@@ -58,7 +68,7 @@ public class PedidoBean implements Serializable {
             // item.setQuantidade(Byte.valueOf("1"));
             item.setPreco(produto.getPreco());
 
-            pedido.getPedidoItems().add(item);
+            pedido.getItens().add(item);
         }
         pedidoRepository.save(pedido);
         Messages.addFlashGlobalInfo("Registro salvo com sucesso!");

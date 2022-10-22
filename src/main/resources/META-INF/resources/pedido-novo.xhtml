@@ -46,7 +46,7 @@
 
             <h:panelGrid columns="1">
                 <p:outputLabel value="Valor Total - R$" />
-                <p:inputNumber placeholder="0.00" maxlength="50" size="15" value="#{pedidoBean.pedido.valorTotal}" required="true" requiredMessage="O campo Valor Total é obrigatório!" modifyValueOnWheel="false" />
+                <p:inputNumber placeholder="0.00" maxlength="50" size="15" value="#{pedidoBean.pedido.valortotal}" required="true" requiredMessage="O campo Valor Total é obrigatório!" modifyValueOnWheel="false" />
             </h:panelGrid>
 
             <h:panelGrid columns="1">
@@ -116,7 +116,7 @@
             <p:separator />
 
             <h:panelGrid columns="2">
-                <p:commandButton icon="pi pi-check" value="Salvar" actionListener="#{pedidoBean.salvar()}" update="mensagem"/>
+                <p:commandButton icon="pi pi-check" value="Salvar" actionListener="#{pedidoBean.salvar()}"/>
                 <p:button value="Voltar" outcome="pedido-listagem.xhtml?faces-redirect=true"/>
             </h:panelGrid>
 
