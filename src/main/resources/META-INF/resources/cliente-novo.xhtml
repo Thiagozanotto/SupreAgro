@@ -28,16 +28,6 @@
                 <p:inputText maxlength="50" size="15" value="#{clienteBean.cliente.nome}" required="true" requiredMessage="O campo Nome é obrigatório!"/>
             </h:panelGrid>
 
-            <h:panelGrid columns="1">
-                <p:outputLabel value="Pedido"/>
-                <p:selectOneMenu value="#{clienteBean.pedido.id}" converter="omnifaces.SelectItemsConverter"
-                                 required="true" requiredMessage="O campo pedido é obrigatória">
-                    <f:selectItem noSelectionOption="true" itemLabel="Selecione um Pedido"/>
-                    <f:selectItems value="#{clienteBean.pedidos}" var="cursorped" itemLabel="#{cursorped.valorTotal}"
-                                   itemValue="#{cursorped}"/>
-                </p:selectOneMenu>
-            </h:panelGrid>
-
             <h:panelGrid columns="2">
                 <p:commandButton icon="pi pi-check" value="Salvar" actionListener="#{clienteBean.salvar()}" update="mensagem"/>
                 <p:button value="Voltar" outcome="cliente-listagem.xhtml?faces-redirect=true"/>

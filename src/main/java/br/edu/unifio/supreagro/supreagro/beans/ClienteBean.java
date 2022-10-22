@@ -23,7 +23,6 @@ public class ClienteBean {
     @Autowired
     private PedidoRepository pedidoRepository;
     private List<Cliente> clientes;
-    private List<Pedido> pedidos;
 
     public void listar() {
         clientes = clienteRepository.findAll();
@@ -31,7 +30,6 @@ public class ClienteBean {
 
     public void novo() {
         cliente = new Cliente();
-        pedido = new Pedido();
     }
 
     public void salvar() {

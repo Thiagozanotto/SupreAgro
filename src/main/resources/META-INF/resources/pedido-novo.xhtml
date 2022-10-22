@@ -13,24 +13,23 @@
     <f:viewAction action="#{pedidoBean.novo()}"/>
 </f:metadata>
 <h:head>
-    <title> Fazer Pedido </title>
+    <title> Novo Pedido </title>
 </h:head>
 
 <h:body>
     <ui:include src="menu.xhtml"/>
 
-    <h:form>
-        <p:panel header="Fazer Pedido">
+    <h:form id="formulario">
+        <p:panel header="Novo Pedido">
             <p:messages id="mensagem" closable="true" />
 
             <h:panelGrid columns="1">
                 <p:outputLabel value="Observação" />
-                <p:inputTextarea rows="3" cols="30" counter="display" maxlength="100" counterTemplate="{0} characters remaining." autoResize="true"
+                <p:inputTextarea placeholder="Digite uma observação aqui..." rows="3" cols="30" counter="display" maxlength="100" counterTemplate="{0} caracteres." autoResize="true"
                                  value="#{pedidoBean.pedido.observacao}" required="true" requiredMessage="O campo Obersavação é obrigatório!"/>
                 <h:outputText id="display" class="block"/>
 
                 <p:growl id="messages" showDetail="true"/>
-
                 <p:fileUpload mode="advanced"
                               multiple="false"
                               sizeLimit="102400" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
@@ -38,43 +37,16 @@
                               invalidFileMessage="only gif | jpg | jpeg | png is allowed"
                               update="messages cropperPanel"
                               listener="#{cropBean.handleFileUpload}"/>
-
                 <p:outputPanel id="cropperPanel">
-
                     <h:panelGrid columns="1" rendered="#{not empty cropBean.originalImageFile}">
-
-                        <p:commandButton value="Crop"
-                                         action="#{cropBean.crop}"
-                                         update="cropped messages" styleClass="my-3"/>
-
-                        <h:panelGrid columns="2" cellpadding="7">
-
-                            <p:imageCropper
-                                    value="#{cropBean.croppedImage}"
-                                    id="imageCropper" cache="false"
-                                    image="#{cropBean.image}"
-                                    initialCoords="50,50,150,100"
-                                    minSize="50,50" maxSize="350,350"/>
-
-                            <p:outputPanel id="cropped">
-                                <p:graphicImage cache="false"
-                                                rendered="#{not empty cropBean.croppedImage}"
-                                                value="#{cropBean.cropped}"/>
-                            </p:outputPanel>
-
-                        </h:panelGrid>
-
+                        <p:commandButton value="Crop" action="#{cropBean.crop}" update="cropped messages" styleClass="my-3"/>
                     </h:panelGrid>
                 </p:outputPanel>
             </h:panelGrid>
 
-            <h:panelGrid>
-                <p:button value="Itens" icon="pi pi-fw pi-plus-circle" outcome="pedido-listagem.xhtml?faces-redirect=true"/>
-            </h:panelGrid>
-
             <h:panelGrid columns="1">
-                <p:outputLabel value="Valor Total" />
-                <p:inputNumber maxlength="50" size="15" value="#{pedidoBean.pedido.valorTotal}" required="true" requiredMessage="O campo Valor Total é obrigatório!" modifyValueOnWheel="false" />
+                <p:outputLabel value="Valor Total - R$" />
+                <p:inputNumber placeholder="0.00" maxlength="50" size="15" value="#{pedidoBean.pedido.valorTotal}" required="true" requiredMessage="O campo Valor Total é obrigatório!" modifyValueOnWheel="false" />
             </h:panelGrid>
 
             <h:panelGrid columns="1">
@@ -82,7 +54,7 @@
             <p:selectOneMenu value="#{pedidoBean.pedido.cliente}" converter="omnifaces.SelectItemsConverter"
                              required="true" requiredMessage="O campo cliente é obrigatória">
                 <f:selectItem noSelectionOption="true" itemLabel="Selecione um Cliente"/>
-                <f:selectItems value="#{pedidoBean.clienteList}" var="cursorped" itemLabel="#{cursorped.nome}"
+                <f:selectItems value="#{pedidoBean.clientes}" var="cursorped" itemLabel="#{cursorped.nome}"
                                itemValue="#{cursorped}"/>
             </p:selectOneMenu>
             </h:panelGrid>
@@ -92,10 +64,56 @@
                 <p:selectOneMenu value="#{pedidoBean.pedido.vendedor}" converter="omnifaces.SelectItemsConverter"
                                  required="true" requiredMessage="O campo vendedor é obrigatória">
                     <f:selectItem noSelectionOption="true" itemLabel="Selecione um Vendedor"/>
-                    <f:selectItems value="#{pedidoBean.vendedorList}" var="cursorvend" itemLabel="#{cursorvend.nome}"
+                    <f:selectItems value="#{pedidoBean.vendedores}" var="cursorvend" itemLabel="#{cursorvend.nome}"
                                    itemValue="#{cursorvend}"/>
                 </p:selectOneMenu>
             </h:panelGrid>
+
+            <p:separator/>
+
+            <p:dataTable value="#{pedidoBean.produtos}" var="cursor" paginator="true" rows="5">
+                <f:facet name="header">
+                    <h:outputText value="Produtos" />
+                </f:facet>
+
+                <p:column headerText="Id" sprtBy="#{cursor.id}" filterBy="#{cursor.id}" filterMatchMode="contains">
+                    <h:outputText value="#{cursor.id}"/>
+                </p:column>
+
+                <p:column headerText="Nome" sortBy="=#{cursor.nome}" filterBy="#{cursor.nome}" filterMatchMode="contains">
+                    <h:outputText value="#{cursor.nome}" />
+                </p:column>
+
+                <p:column headerText="Preço" sortBy="=#{cursor.preco}" filterBy="#{cursor.preco}" filterMatchMode="contains">
+                    <h:outputText value="#{cursor.preco}" />
+                </p:column>
+
+                <p:column headerText="Opções">
+                    <p:commandButton icon="pi pi-fw pi-plus-circle" actionListener="#{pedidoBean.adcionar(cursor)}" update=":formulario:carrinho"/>
+                </p:column>
+            </p:dataTable>
+
+            <p:separator/>
+
+            <p:dataTable id="carrinho" value="#{pedidoBean.carrinho}" var="cursorcarrinho" paginator="true" rows="5">
+                <f:facet name="header">
+                    <h:outputText value="Carrinho" />
+                </f:facet>
+
+                <p:column headerText="Id" sortBy="#{cursorcarrinho.id}" filterBy="#{cursorcarrinho.id}" filterMatchMode="contains">
+                    <h:outputText value="#{cursorcarrinho.id}" />
+                </p:column>
+
+                <p:column headerText="Nome" sortBy="#{cursorcarrinho.nome}" filterBy="#{cursorcarrinho.nome}" filterMatchMode="contains">
+                    <h:outputText value="#{cursorcarrinho.nome}" />
+                </p:column>
+
+                <p:column headerText="Preco" sortBy="#{cursorcarrinho.preco}">
+                    <h:outputText value="#{cursorcarrinho.preco}" />
+                </p:column>
+            </p:dataTable>
+
+            <p:separator />
 
             <h:panelGrid columns="2">
                 <p:commandButton icon="pi pi-check" value="Salvar" actionListener="#{pedidoBean.salvar()}" update="mensagem"/>

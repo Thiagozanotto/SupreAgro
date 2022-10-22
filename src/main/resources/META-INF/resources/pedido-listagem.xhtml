@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en-us"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<f:metadata>
+    <f:viewAction action="#{pedidoBean.listar()}"/>
+</f:metadata>
+<h:head>
+    <title> Pedidos </title>
+</h:head>
+
+<h:body>
+    <ui:include src="menu.xhtml"/>
+
+    <h:form>
+        <p:dataTable value="#{pedidoBean.pedidoList}" var="cursor" paginator="true" rows="10">
+            <f:facet name="header">
+                <h:outputText value="Pedidos" />
+            </f:facet>
+
+            <p:column headerText="Id" sprtBy="#{cursor.id}" filterBy="#{cursor.id}" filterMatchMode="contains">
+                <h:outputText value="#{cursor.id}"/>
+            </p:column>
+
+            <p:column headerText="Observação" sortBy="=#{cursor.observacao}" filterBy="#{cursor.observacao}" filterMatchMode="contains">
+                <h:outputText value="#{cursor.observacao}" />
+            </p:column>
+
+            <p:column headerText="Valor Total" sortBy="#{cursor.valorTotal}" filterBy="#{cursor.valorTotal}" filterMatchMode="contains">
+                <h:outputText value="#{cursor.valorTotal}" />
+            </p:column>
+
+            <p:column headerText="Nome Vendedor" sortBy="#{cursor.vendedor.nome}" filterBy="#{cursor.vendedor.nome}" filterMatchMode="contains">
+                <h:outputText value="#{cursor.vendedor.nome}" />
+            </p:column>
+
+            <p:column headerText="Nome Cliente" sortBy="#{cursor.cliente.nome}" filterBy="#{cursor.cliente.nome}" filterMatchMode="contains">
+                <h:outputText value="#{cursor.cliente.nome}" />
+            </p:column>
+
+
+
+        </p:dataTable>
+    </h:form>
+
+</h:body>
+</html>

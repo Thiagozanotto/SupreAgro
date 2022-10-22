@@ -25,24 +25,28 @@
             <p:submenu label="Rota" icon="pi pi-fw pi-calendar">
                 <p:column>
                     <p:submenu label="Funções">
-                        <p:menuitem value="Listar" outcome="rota-listagem.xhtml?faces-redirect=true" />
-                        <p:menuitem value="Cadastrar" outcome="rota-novo.xhtml?faces-redirect=true" />
+                        <p:menuitem value="Concultar Rotas" outcome="rota-listagem.xhtml?faces-redirect=true" />
+                        <p:menuitem value="Nova Rota" outcome="rota-novo.xhtml?faces-redirect=true" />
                     </p:submenu>
                 </p:column>
             </p:submenu>
             <p:submenu label="Usuarios" icon="pi pi-fw pi-users">
                 <p:column>
                     <p:submenu label="Funções">
-                        <p:menuitem value="Listar" outcome="usuario-listagem.xhtml?faces-redirect=true" />
-                        <p:menuitem value="Cadastrar" outcome="usuario-novo.xhtml?faces-redirect=true" />
+                        <p:menuitem value="Consultar Usuário" outcome="usuario-listagem.xhtml?faces-redirect=true" />
+                        <p:menuitem value="Cadastrar Usuário" outcome="usuario-novo.xhtml?faces-redirect=true" />
                     </p:submenu>
                 </p:column>
             </p:submenu>
-            <p:submenu label="Vendedor" icon="pi pi-fw pi-user">
+            <p:submenu label="Funcionário" icon="pi pi-fw pi-user">
                 <p:column>
                     <p:submenu label="Funções">
                         <p:menuitem value="Listar" outcome="vendedor-listagem.xhtml?faces-redirect=true" />
                         <p:menuitem value="Cadastrar" outcome="vendedor-novo.xhtml?faces-redirect=true" />
+                    </p:submenu>
+                    <p:submenu label="Veículos" icon="pi pi-fw pi-car">
+                        <p:menuitem value="Consultar Veículos" outcome="veiculo-listagem.xhtml?faces-redirect=true" />
+                        <p:menuitem value="Cadastrar Veículo" outcome="veiculo-novo.xhtml?faces-redirect=true"/>
                     </p:submenu>
                 </p:column>
             </p:submenu>
@@ -54,35 +58,23 @@
                     </p:submenu>
                 </p:column>
             </p:submenu>
-            <p:submenu label="Veículos" icon="pi pi-fw pi-car">
-                <p:column>
-                    <p:submenu label="Funções">
-                        <p:menuitem value="Listar" outcome="veiculo-listagem.xhtml?faces-redirect=true" />
-                        <p:menuitem value="Cadastrar" outcome="veiculo-novo.xhtml?faces-redirect=true"/>
-                    </p:submenu>
-                </p:column>
-            </p:submenu>
-            <p:submenu label="Categoria" icon="pi pi-fw pi-tags">
-                <p:column>
-                    <p:submenu label="Funções">
-                        <p:menuitem value="Listar" outcome="categoria-listagem.xhtml?faces-redirect=true" />
-                        <p:menuitem value="Cadastrar" outcome="categoria-novo.xhtml?faces-redirect=true" />
-                    </p:submenu>
-                </p:column>
-            </p:submenu>
             <p:submenu label="Produtos" icon="pi pi-fw pi-shopping-bag">
                 <p:column>
                     <p:submenu label="Funções">
-                        <p:menuitem value="Listar" outcome="produto-listagem.xhtml?faces-redirect=true" />
-                        <p:menuitem value="Cadastrar" outcome="produto-novo.xhtml?faces-redirect=true" />
+                        <p:menuitem value="Consultar Produtos" outcome="produto-listagem.xhtml?faces-redirect=true" />
+                        <p:menuitem value="Cadastrar Produto" outcome="produto-novo.xhtml?faces-redirect=true" />
+                    </p:submenu>
+                    <p:submenu label="Categorias" icon="pi pi-fw pi-tags">
+                        <p:menuitem value="Colsutar Categorias" outcome="categoria-listagem.xhtml?faces-redirect=true" />
+                        <p:menuitem value="Cadastrar Categoria" outcome="categoria-novo.xhtml?faces-redirect=true" />
                     </p:submenu>
                 </p:column>
             </p:submenu>
             <p:submenu label="Pedidos" icon="pi pi-fw pi-shopping-cart">
                 <p:column>
                     <p:submenu label="Funções">
-                        <p:menuitem value="Listar" outcome="pedido-listagem.xhtml?faces-redirect=true" />
-                        <p:menuitem value="Cadastrar" outcome="pedido-novo.xhtml?faces-redirect=true" />
+                        <p:menuitem value="Consultar Pedido" outcome="pedido-listagem.xhtml?faces-redirect=true" />
+                        <p:menuitem value="Novo Pedido" outcome="pedido-novo.xhtml?faces-redirect=true" />
                     </p:submenu>
                 </p:column>
             </p:submenu>

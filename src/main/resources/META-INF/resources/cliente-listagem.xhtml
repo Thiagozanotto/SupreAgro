@@ -32,10 +32,6 @@
             <p:column headerText="Nome" sortBy="=#{cursor.nome}" filterBy="#{cursor.nome}" filterMatchMode="contains">
                 <h:outputText value="#{cursor.nome}" />
             </p:column>
-
-            <p:column headerText="Pedido" sortBy="#{cursor.pedido.id}">
-                <h:outputText value="#{cursor.pedido.id}" />
-            </p:column>
         </p:dataTable>
     </h:form>
 
