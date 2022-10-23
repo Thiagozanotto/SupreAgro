@@ -23,18 +23,22 @@
         <p:panel header="Cadastro de Veículos">
             <p:messages id="mensagem" closable="true" />
 
-            <h:panelGrid columns="1">
-                <p:outputLabel value="Modelo" />
-                <p:inputText maxlength="50" size="15" value="#{veiculoBean.veiculo.modelo}" required="true" requiredMessage="O campo Modelo é obrigatório!"/>
+            <h:panelGrid columns="2">
+                <i class="pi pi-fw pi-heart-fill">
+                    <p:inputText placeholder="Modelo" inline="false" showTime="true" timeInput="true" maxlength="50" size="15"
+                                 value="#{veiculoBean.veiculo.modelo}" required="true" requiredMessage="O campo Modelo é obrigatório!"/>
+                </i>
             </h:panelGrid>
 
-            <h:panelGrid columns="1">
-                <p:outputLabel value="Ano" />
-                <p:inputText placeholder="2022" maxlength="50" size="15" value="#{veiculoBean.veiculo.ano}" readonlyInput="true" requiredMessage="O campo Ano é obrigatório!"/>
+            <h:panelGrid columns="2">
+                <i class="pi pi-fw pi-calendar-minus">
+                    <p:inputText placeholder="Ano" inline="false" showTime="true" timeInput="true" maxlength="50" size="15"
+                                 value="#{veiculoBean.veiculo.ano}" required="true" requiredMessage="O campo Ano é obrigatório!"/>
+                </i>
             </h:panelGrid>
 
-            <h:panelGrid columns="1">
-            <p:outputLabel value="Vendedor"/>
+            <h:panelGrid columns="2">
+                <i class="pi pi-fw pi-user"/>
             <p:selectOneMenu value="#{veiculoBean.veiculo.vendedor}" converter="omnifaces.SelectItemsConverter"
                              required="true" requiredMessage="O campo vendedor é obrigatória">
                 <f:selectItem noSelectionOption="true" itemLabel="Selecione um Vendedor"/>
@@ -42,6 +46,8 @@
                                itemValue="#{cursorveiculo}"/>
             </p:selectOneMenu>
             </h:panelGrid>
+
+            <p:separator/>
 
             <h:panelGrid columns="2">
                 <p:commandButton icon="pi pi-check" value="Salvar" actionListener="#{veiculoBean.salvar()}" update="mensagem"/>

@@ -17,7 +17,7 @@ public class Veiculo {
     private String modelo;
 
     @Column(nullable = false)
-    private String ano = "2022";
+    private String ano;
 
     @ManyToOne
     @JoinColumn(nullable = false)

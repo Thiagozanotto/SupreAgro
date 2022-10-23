@@ -23,20 +23,28 @@
         <p:panel header="Cadastro de Usuários">
             <p:messages id="mensagem" closable="true" />
 
-            <h:panelGrid columns="1">
-                <p:outputLabel value="Usuário" />
-                <p:inputText maxlength="50" size="15" value="#{usuarioBean.usuario.usuario}" required="true" requiredMessage="O campo Usário é obrigatório!"/>
+            <h:panelGrid columns="2">
+                <i class="pi pi-fw pi-users">
+                    <p:inputText placeholder="Usuário" inline="flase" showTime="true" timeInput="true" maxlength="50" size="15"
+                                  value="#{usuarioBean.usuario.usuario}" required="true" requiredMessage="O campo Usuário é obrigatório!"/>
+                </i>
             </h:panelGrid>
 
-            <h:panelGrid columns="1">
-                <p:outputLabel value="Tipo" />
-                <p:inputText maxlength="50" size="15" value="#{usuarioBean.usuario.tipo}" required="true" requiredMessage="O campo Tipo é obrigatório!"/>
+            <h:panelGrid columns="2">
+                <i class="pi pi-fw pi-id-card">
+                    <p:inputText placeholder="Tipo" inline="flase" showTime="true" timeInput="true" maxlength="50" size="15"
+                                  value="#{usuarioBean.usuario.tipo}" required="true" requiredMessage="O campo Tipo é obrigatório!"/>
+                </i>
             </h:panelGrid>
 
-            <h:panelGrid columns="1">
-                <p:outputLabel value="Senha" />
-                <p:password maxlength="50" size="15" value="#{usuarioBean.usuario.senha}" required="true" requiredMessage="O campo Senha é obrigatório!"/>
+            <h:panelGrid columns="2">
+                <i class="pi pi-fw pi-question-circle">
+                    <p:password placeholder="Senha" inline="flase" showTime="true" timeInput="true" maxlength="50" size="15"
+                                  value="#{usuarioBean.usuario.senha}" required="true" requiredMessage="O campo Senha é obrigatório!"/>
+                </i>
             </h:panelGrid>
+
+            <p:separator/>
 
             <h:panelGrid columns="2">
                 <p:commandButton icon="pi pi-check" value="Salvar" actionListener="#{usuarioBean.salvar()}" update="mensagem"/>
