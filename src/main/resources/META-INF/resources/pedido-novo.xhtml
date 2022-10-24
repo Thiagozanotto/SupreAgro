@@ -29,14 +29,17 @@
                                  value="#{pedidoBean.pedido.observacao}" required="true" requiredMessage="O campo Obersavação é obrigatório!"/>
                 <h:outputText id="display" class="block"/>
 
-                <p:growl id="messages" showDetail="true"/>
                 <p:fileUpload mode="advanced"
                               multiple="false"
                               sizeLimit="102400" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
                               invalidSizeMessage="Maximum file size allowed is 100 KB"
                               invalidFileMessage="only gif | jpg | jpeg | png is allowed"
-                              update="messages cropperPanel"
-                              listener="#{cropBean.handleFileUpload}"/>
+                              update="mensagem"
+                              listener="#{pedidoBean.carregarFoto}"
+                              uploadLabel="Carregar"
+                              cancelLabel="Cancelar"
+                              label="Escolher"
+                />
                 <p:outputPanel id="cropperPanel">
                     <h:panelGrid columns="1" rendered="#{not empty cropBean.originalImageFile}">
                         <p:commandButton value="Crop" action="#{cropBean.crop}" update="cropped messages" styleClass="my-3"/>
@@ -89,7 +92,7 @@
                 </p:column>
 
                 <p:column headerText="Opções">
-                    <p:commandButton icon="pi pi-fw pi-plus-circle" actionListener="#{pedidoBean.adcionar(cursor)}" update=":formulario:carrinho"/>
+                    <p:commandButton icon="pi pi-fw pi-plus-circle" actionListener="#{pedidoBean.adcionar(cursor)}" update=":formulario:carrinho" immediate="true"/>
                 </p:column>
             </p:dataTable>
 

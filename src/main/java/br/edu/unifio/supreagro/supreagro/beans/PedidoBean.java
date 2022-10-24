@@ -8,6 +8,8 @@ import br.edu.unifio.supreagro.supreagro.repositorios.VendedorRepository;
 import lombok.Data;
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.file.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
@@ -73,5 +75,11 @@ public class PedidoBean implements Serializable {
         pedidoRepository.save(pedido);
         Messages.addFlashGlobalInfo("Registro salvo com sucesso!");
         Faces.navigate("pedido-novo.xhtml?faces-redirect=true");
+    }
+
+    public void carregarFoto(FileUploadEvent event) {
+        UploadedFile arquivo = event.getFile();
+        pedido.setFoto(arquivo.getContent());
+        Messages.addFlashGlobalInfo("Arquivo carregado com sucesso");
     }
 }

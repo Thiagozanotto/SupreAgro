@@ -18,6 +18,10 @@ public class Pedido {
     @Column
     private String valortotal;
 
+    @Lob
+    @Column(columnDefinition="MEDIUMBLOB")
+    private byte[] foto;
+
     @OneToMany(mappedBy = "pedido", cascade = {CascadeType.PERSIST})
     private List<PedidoItem> itens = new ArrayList<>();
 
