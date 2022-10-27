@@ -14,7 +14,6 @@
 </f:metadata>
 <h:head>
     <title> Rotas </title>
-    <script src="https://maps.googleapis.com/maps/api/js?Sensor=false"  type="text/javascript"/>
 </h:head>
 
 <h:body>
@@ -48,6 +47,11 @@
 
             <p:column headerText="Veículo" sortBy="#{cursor.veiculo.modelo}">
                 <h:outputText value="#{cursor.veiculo.modelo}" />
+            </p:column>
+
+            <p:column headerText="Opções">
+                <p:commandButton  icon="pi pi-fw pi-trash" actionListener="#{rotaBean.selecionarExclusao(cursor)}"/>
+                <p:commandButton icon="pi pi-fw pi-pencil" actionListener="#{rotaBean.selecionarEdicao(cursor)}" />
             </p:column>
         </p:dataTable>
     </h:form>

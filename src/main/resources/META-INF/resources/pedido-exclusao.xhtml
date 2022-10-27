@@ -10,7 +10,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <f:metadata>
-    <f:viewAction action="#{pedidoBean.novo()}"/>
+    <f:viewAction action="#{pedidoBean.carregar()}"/>
 </f:metadata>
 <h:head>
     <title> Novo Pedido </title>
@@ -26,7 +26,7 @@
             <h:panelGrid columns="1">
                 <p:outputLabel value="Observação" />
                 <p:inputTextarea placeholder="Digite uma observação aqui..." rows="3" cols="30" counter="display" maxlength="100" counterTemplate="{0} caracteres." autoResize="true"
-                                 value="#{pedidoBean.pedido.observacao}" required="true" requiredMessage="O campo Obersavação é obrigatório!"/>
+                                 value="#{pedidoBean.pedido.observacao}" required="true" requiredMessage="O campo Obersavação é obrigatório!" readonly="true"/>
                 <h:outputText id="display" class="block"/>
 
                 <p:fileUpload mode="advanced"
@@ -39,6 +39,7 @@
                               uploadLabel="Carregar"
                               cancelLabel="Cancelar"
                               label="Escolher"
+                              disabled="true"
                 />
                 <p:outputPanel id="cropperPanel">
                     <h:panelGrid columns="1" rendered="#{not empty cropBean.originalImageFile}">
@@ -49,19 +50,16 @@
 
             <h:panelGrid columns="1">
                 <p:outputLabel value="Valor Total - R$" />
-                <h:panelGrid id="atual" columns="2">
-                    <p:inputText maxlength="50" size="15" value="#{pedidoBean.valor}" requiredMessage="O campo Valor Total não é possivel ser calculado!">
-
-                    </p:inputText>
-
-                    <p:commandButton icon="pi pi-fw pi-sync" actionListener="#{pedidoBean.calcular()}" process="@this" update="atual" />
+                <h:panelGrid columns="2">
+                    <p:inputText readonly="true" id="atual" placeholder="0.00" maxlength="50" size="15" value="#{pedidoBean.resul}" requiredMessage="O campo Valor Total não é possivel ser calculado!" />
+                    <p:commandButton icon="pi pi-fw pi-sync" actionListener="#{pedidoBean.valor}" update="atual" immediate="true"/>
                 </h:panelGrid>
             </h:panelGrid>
 
             <h:panelGrid columns="1">
             <p:outputLabel value="Cliente"/>
             <p:selectOneMenu value="#{pedidoBean.pedido.cliente}" converter="omnifaces.SelectItemsConverter"
-                             required="true" requiredMessage="O campo cliente é obrigatória">
+                             required="true" requiredMessage="O campo cliente é obrigatória" disabled="true">
                 <f:selectItem noSelectionOption="true" itemLabel="Selecione um Cliente"/>
                 <f:selectItems value="#{pedidoBean.clientes}" var="cursorped" itemLabel="#{cursorped.nome}"
                                itemValue="#{cursorped}"/>
@@ -71,7 +69,7 @@
             <h:panelGrid columns="1">
                 <p:outputLabel value="Vendedor"/>
                 <p:selectOneMenu value="#{pedidoBean.pedido.vendedor}" converter="omnifaces.SelectItemsConverter"
-                                 required="true" requiredMessage="O campo vendedor é obrigatória">
+                                 required="true" requiredMessage="O campo vendedor é obrigatória" disabled="true">
                     <f:selectItem noSelectionOption="true" itemLabel="Selecione um Vendedor"/>
                     <f:selectItems value="#{pedidoBean.vendedores}" var="cursorvend" itemLabel="#{cursorvend.nome}"
                                    itemValue="#{cursorvend}"/>
@@ -85,15 +83,15 @@
                     <h:outputText value="Produtos" />
                 </f:facet>
 
-                <p:column headerText="Id" sprtBy="#{cursor.id}" filterBy="#{cursor.id}" filterMatchMode="contains">
+                <p:column headerText="Id" sprtBy="#{cursor.id}" filterBy="#{cursor.id}" filterMatchMode="contains" >
                     <h:outputText value="#{cursor.id}"/>
                 </p:column>
 
-                <p:column headerText="Nome" sortBy="=#{cursor.nome}" filterBy="#{cursor.nome}" filterMatchMode="contains">
+                <p:column headerText="Nome" sortBy="=#{cursor.nome}" filterBy="#{cursor.nome}" filterMatchMode="contains" >
                     <h:outputText value="#{cursor.nome}" />
                 </p:column>
 
-                <p:column headerText="Preço" sortBy="=#{cursor.preco}" filterBy="#{cursor.preco}" filterMatchMode="contains">
+                <p:column headerText="Preço" sortBy="=#{cursor.preco}" filterBy="#{cursor.preco}" filterMatchMode="contains" >
                     <h:outputText value="#{cursor.preco}" />
                 </p:column>
 
@@ -120,13 +118,13 @@
                 <p:column headerText="Preco" sortBy="#{cursorcarrinho.preco}">
                     <h:outputText value="#{cursorcarrinho.preco}" />
                 </p:column>
-            </p:dataTable>
+        </p:dataTable>
 
             <p:separator />
 
             <h:panelGrid columns="2">
-                <p:commandButton icon="pi pi-check" value="Salvar" actionListener="#{pedidoBean.salvar()}"/>
-                <p:button value="Voltar" outcome="pedido-listagem.xhtml?faces-redirect=true"/>
+                <p:commandButton icon="pi pi-trash" value="Excluir" actionListener="#{pedidoBean.excluir()}" update="mensagem" />
+                <p:button value="Voltar" outcome="pedido-listagem.xhtml?faces-redirect=true" />
             </h:panelGrid>
 
         </p:panel>

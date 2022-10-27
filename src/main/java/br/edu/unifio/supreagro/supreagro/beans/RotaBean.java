@@ -50,4 +50,31 @@ public class RotaBean {
             excecao.printStackTrace();
             Messages.addFlashGlobalError("Registro já existe!");}
     }
+
+    public void selecionarExclusao(Rota cursor){
+        Faces.setFlashAttribute("cursor", cursor);
+        Faces.navigate("rota-exclusao.xhtml?faces-redirect=true");
+    }
+    public void selecionarEdicao(Rota cursor){
+        Faces.setFlashAttribute("cursor", cursor);
+        Faces.navigate("rota-edicao.xhtml?faces-redirect=true");
+    }
+
+    public void carregar(){
+        rota = Faces.getFlashAttribute("cursor");
+        clientes = clienteRepository.findAll();
+        vendedores = vendedorRepository.findAll();
+        veiculos = veiculoRepository.findAll();
+    }
+
+    public void excluir() {
+        try {
+            rotaRepository.delete(rota);
+            Messages.addFlashGlobalInfo("Registro removido com sucesso!");
+            Faces.navigate("rota-listagem.xhtml?faces-redirect=true");
+        } catch (DataIntegrityViolationException excecao){
+            excecao.printStackTrace();
+            Messages.addFlashGlobalError("Esse Registro possui componentes vinculados!");
+        }
+    }
 }

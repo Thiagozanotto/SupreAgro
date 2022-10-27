@@ -23,9 +23,9 @@
         <p:panel header="Cadastro de Cliente">
             <p:messages id="mensagem" closable="true" />
 
-            <h:panelGrid columns="1">
-                <p:outputLabel value="Nome" />
-                <p:inputText maxlength="50" size="15" value="#{clienteBean.cliente.nome}" required="true" requiredMessage="O campo Nome é obrigatório!"/>
+            <h:panelGrid columns="2">
+                <i class="pi pi-fw pi-star-fill"/>
+                <p:inputText placeholder="Nome" maxlength="50" size="15" value="#{clienteBean.cliente.nome}" required="true" requiredMessage="O campo Nome é obrigatório!"/>
             </h:panelGrid>
 
             <h:panelGrid columns="2">

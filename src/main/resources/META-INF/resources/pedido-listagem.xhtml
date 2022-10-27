@@ -13,14 +13,14 @@
     <f:viewAction action="#{pedidoBean.listar()}"/>
 </f:metadata>
 <h:head>
-    <title> Pedidos </title>
+    <title> Listas de Pedidos </title>
 </h:head>
 
 <h:body>
     <ui:include src="menu.xhtml"/>
 
     <h:form>
-        <p:dataTable value="#{pedidoBean.pedidoList}" var="cursor" paginator="true" rows="10">
+        <p:dataTable value="#{pedidoBean.pedidos}" var="cursor" paginator="true" rows="10">
             <f:facet name="header">
                 <h:outputText value="Pedidos" />
             </f:facet>
@@ -33,21 +33,23 @@
                 <h:outputText value="#{cursor.observacao}" />
             </p:column>
 
-            <p:column headerText="Valor Total" sortBy="#{cursor.valorTotal}" filterBy="#{cursor.valorTotal}" filterMatchMode="contains">
-                <h:outputText value="#{cursor.valorTotal}" />
+            <p:column headerText="Valor Total" sortBy="#{cursor.valortotal}" filterBy="#{cursor.valortotal}" filterMatchMode="contains">
+                <h:outputText value="#{cursor.valortotal}" />
             </p:column>
 
-            <p:column headerText="Nome Vendedor" sortBy="#{cursor.vendedor.nome}" filterBy="#{cursor.vendedor.nome}" filterMatchMode="contains">
-                <h:outputText value="#{cursor.vendedor.nome}" />
-            </p:column>
-
-            <p:column headerText="Nome Cliente" sortBy="#{cursor.cliente.nome}" filterBy="#{cursor.cliente.nome}" filterMatchMode="contains">
+            <p:column headerText="Cliente" sortBy="#{cursor.cliente.nome}">
                 <h:outputText value="#{cursor.cliente.nome}" />
             </p:column>
 
+            <p:column headerText="Vendedor" sortBy="#{cursor.vendedor.nome}">
+                <h:outputText value="#{cursor.vendedor.nome}" />
+            </p:column>
 
-
-        </p:dataTable>
+            <p:column headerText="Opções">
+                    <p:commandButton  icon="pi pi-trash" actionListener="#{pedidoBean.selecionarExclusao(cursor)}"/>
+                    <p:commandButton icon="pi pi-pencil" actionListener="#{pedidoBean.selecionarEdicao(cursor)}" />
+            </p:column>
+    </p:dataTable>
     </h:form>
 
 </h:body>

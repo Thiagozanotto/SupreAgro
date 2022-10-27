@@ -10,17 +10,17 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <f:metadata>
-    <f:viewAction action="#{pedidoBean.novo()}"/>
+    <f:viewAction action="#{pedidoBean.carregar()}"/>
 </f:metadata>
 <h:head>
-    <title> Novo Pedido </title>
+    <title> Editar Pedido </title>
 </h:head>
 
 <h:body>
     <ui:include src="menu.xhtml"/>
 
     <h:form id="formulario">
-        <p:panel header="Novo Pedido">
+        <p:panel header="Editar Pedido">
             <p:messages id="mensagem" closable="true" />
 
             <h:panelGrid columns="1">
@@ -49,12 +49,9 @@
 
             <h:panelGrid columns="1">
                 <p:outputLabel value="Valor Total - R$" />
-                <h:panelGrid id="atual" columns="2">
-                    <p:inputText maxlength="50" size="15" value="#{pedidoBean.valor}" requiredMessage="O campo Valor Total não é possivel ser calculado!">
-
-                    </p:inputText>
-
-                    <p:commandButton icon="pi pi-fw pi-sync" actionListener="#{pedidoBean.calcular()}" process="@this" update="atual" />
+                <h:panelGrid columns="2">
+                    <p:inputText id="atual" placeholder="0.00" maxlength="50" size="15" value="#{pedidoBean.resul}" requiredMessage="O campo Valor Total não é possivel ser calculado!" />
+                    <p:commandButton icon="pi pi-fw pi-sync" actionListener="#{pedidoBean.valor}" update="atual" immediate="true"/>
                 </h:panelGrid>
             </h:panelGrid>
 
@@ -120,13 +117,13 @@
                 <p:column headerText="Preco" sortBy="#{cursorcarrinho.preco}">
                     <h:outputText value="#{cursorcarrinho.preco}" />
                 </p:column>
-            </p:dataTable>
+        </p:dataTable>
 
             <p:separator />
 
             <h:panelGrid columns="2">
-                <p:commandButton icon="pi pi-check" value="Salvar" actionListener="#{pedidoBean.salvar()}"/>
-                <p:button value="Voltar" outcome="pedido-listagem.xhtml?faces-redirect=true"/>
+                <p:commandButton icon="pi pi-pencil"  value="Editar" actionListener="#{pedidoBean.salvar()}" update="mensagem" />
+                <p:button value="Voltar" outcome="pedido-listagem.xhtml?faces-redirect=true" />
             </h:panelGrid>
 
         </p:panel>

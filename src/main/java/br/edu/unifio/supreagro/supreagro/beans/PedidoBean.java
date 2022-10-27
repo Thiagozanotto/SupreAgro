@@ -6,6 +6,8 @@ import br.edu.unifio.supreagro.supreagro.repositorios.PedidoRepository;
 import br.edu.unifio.supreagro.supreagro.repositorios.ProdutoRepository;
 import br.edu.unifio.supreagro.supreagro.repositorios.VendedorRepository;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 import org.primefaces.event.FileUploadEvent;
@@ -22,7 +24,6 @@ import java.util.List;
 @Data @ViewScoped @Component
 public class PedidoBean implements Serializable {
     private Pedido pedido;
-
     private List<Pedido> pedidos;
     private List<Cliente> clientes;
     private List<Vendedor> vendedores;
@@ -56,7 +57,8 @@ public class PedidoBean implements Serializable {
         try {
             pedidoRepository.save(pedido);
             Messages.addFlashGlobalInfo("Registro salvo com sucesso!");
-            Faces.navigate("pedido-novo.xhtml?faces-redirect=true");
+            Faces.navigate("pedido-listagem.xhtml?faces-redirect=true");
+            pedido.setValortotal(String.valueOf(resul));
         } catch (DataIntegrityViolationException excecao) {
             excecao.printStackTrace();
             Messages.addFlashGlobalInfo("Esse Pedido já existe!");
@@ -71,15 +73,51 @@ public class PedidoBean implements Serializable {
             item.setPreco(produto.getPreco());
 
             pedido.getItens().add(item);
+
         }
         pedidoRepository.save(pedido);
         Messages.addFlashGlobalInfo("Registro salvo com sucesso!");
         Faces.navigate("pedido-novo.xhtml?faces-redirect=true");
     }
-
     public void carregarFoto(FileUploadEvent event) {
         UploadedFile arquivo = event.getFile();
         pedido.setFoto(arquivo.getContent());
         Messages.addFlashGlobalInfo("Arquivo carregado com sucesso");
+    }
+
+    double resul = 0;
+    Double valor = 0D;
+    public void calcular(){
+        valor = 0D;
+
+        for (Produto produto : carrinho) {
+            valor += produto.getPreco();
+        }
+    }
+    public void excluir() {
+        try {
+            pedidoRepository.delete(pedido);
+            Messages.addFlashGlobalInfo("Registro removido com sucesso!");
+            Faces.navigate("pedido-listagem.xhtml?faces-redirect=true");
+        } catch (DataIntegrityViolationException excecao){
+            excecao.printStackTrace();
+            Messages.addFlashGlobalError("Essa Categoria possui produtos vinculados!");
+        }
+    }
+
+    public void selecionarExclusao(Pedido cursor){
+        Faces.setFlashAttribute("cursor", cursor);
+        Faces.navigate("pedido-exclusao.xhtml?faces-redirect=true");
+    }
+    public void selecionarEdicao(Pedido cursor){
+        Faces.setFlashAttribute("cursor", cursor);
+        Faces.navigate("pedido-edicao.xhtml?faces-redirect=true");
+    }
+
+    public void carregar(){
+        pedido = Faces.getFlashAttribute("cursor");
+        clientes = clienteRepository.findAll();
+        vendedores = vendedorRepository.findAll();
+        produtos = produtoRepository.findAll();
     }
 }
