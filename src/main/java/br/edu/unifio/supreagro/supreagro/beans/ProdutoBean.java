@@ -27,20 +27,24 @@ public class ProdutoBean {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
-    public void listar(){
+    public void listar() {
         produtos = produtoRepository.findAll();
     }
-    public void novo(){
+
+    public void novo() {
         produto = new Produto();
         categorias = categoriaRepository.findAll();
     }
-    public void salvar(){
-        try{
+
+    public void salvar() {
+        try {
             produtoRepository.save(produto);
             Messages.addFlashGlobalInfo("Registro salvo com sucesso!");
             Faces.navigate("produto-listagem.xhtml?faces-redirect=true");
-        }catch (DataIntegrityViolationException excecao) {
+        } catch (DataIntegrityViolationException excecao) {
             excecao.printStackTrace();
-            Messages.addFlashGlobalError("Registro já existe!");}
+            Messages.addFlashGlobalError("Registro já existe!");
+        }
     }
+
 }

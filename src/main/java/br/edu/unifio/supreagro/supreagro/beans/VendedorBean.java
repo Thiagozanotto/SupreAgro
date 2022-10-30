@@ -46,4 +46,9 @@ public class VendedorBean {
     }
 
 
+    public void carregar(){
+        vendedor = Faces.getFlashAttribute("cursor");
+    }
+
+
 }

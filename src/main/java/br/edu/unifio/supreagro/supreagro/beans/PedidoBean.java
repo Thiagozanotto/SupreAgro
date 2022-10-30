@@ -16,9 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
+import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Data @ViewScoped @Component
@@ -29,6 +31,7 @@ public class PedidoBean implements Serializable {
     private List<Vendedor> vendedores;
     private List<Produto> carrinho;
     private List<Produto> produtos;
+    private Produto produto;
 
     @Autowired
     PedidoRepository pedidoRepository;
@@ -39,7 +42,6 @@ public class PedidoBean implements Serializable {
 
     @Autowired
     private ProdutoRepository produtoRepository;
-
     public void listar(){
         pedidos = pedidoRepository.findAll();
     }
@@ -52,6 +54,7 @@ public class PedidoBean implements Serializable {
     }
 
     public void adcionar(Produto cursor){ carrinho.add(cursor); }
+
     public void salvar(){
 
         try {
