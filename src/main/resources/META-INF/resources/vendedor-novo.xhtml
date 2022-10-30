@@ -23,6 +23,15 @@
         <p:panel header="Cadastro de Vendedores">
             <p:messages id="mensagem" closable="true" />
 
+            <p:toolbar style="background:transparent">
+                <p:toolbarGroup align="right">
+                    <p:button icon="pi pi-arrow-left" outcome="vendedor-listagem.xhtml?faces-redirect=true"/>
+                    <p:commandButton icon="pi pi-save" actionListener="#{vendedorBean.salvar()}" update="mensagem"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:separator/>
+
             <h:panelGrid columns="2">
                 <i class="pi pi-fw pi-user">
                     <p:inputText placeholder="Nome" inline="false" showTime="true" timeInput="true" maxlength="50" size="15"
@@ -45,13 +54,6 @@
                     <f:selectItems value="#{vendedorBean.usuarios}" var="cursoruser" itemLabel="#{cursoruser.usuario}"
                                    itemValue="#{cursoruser}"/>
                 </p:selectOneMenu>
-            </h:panelGrid>
-
-            <p:separator/>
-
-            <h:panelGrid columns="2">
-                <p:commandButton icon="pi pi-check" value="Salvar" actionListener="#{vendedorBean.salvar()}" update="mensagem"/>
-                <p:button value="Voltar" outcome="vendedor-listagem.xhtml?faces-redirect=true"/>
             </h:panelGrid>
 
         </p:panel>

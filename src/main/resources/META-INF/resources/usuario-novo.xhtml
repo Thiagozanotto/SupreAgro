@@ -23,6 +23,15 @@
         <p:panel header="Cadastro de Usuários">
             <p:messages id="mensagem" closable="true" />
 
+            <p:toolbar style="background:transparent">
+                <p:toolbarGroup align="right">
+                    <p:button icon="pi pi-arrow-left" outcome="usuario-listagem.xhtml?faces-redirect=true"/>
+                    <p:commandButton icon="pi pi-save" actionListener="#{usuarioBean.salvar()}" update="mensagem"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:separator/>
+
             <h:panelGrid columns="2">
                 <i class="pi pi-fw pi-users">
                     <p:inputText placeholder="Usuário" inline="flase" showTime="true" timeInput="true" maxlength="50" size="15"
@@ -42,13 +51,6 @@
                     <p:password placeholder="Senha" inline="flase" showTime="true" timeInput="true" maxlength="50" size="15"
                                   value="#{usuarioBean.usuario.senha}" required="true" requiredMessage="O campo Senha é obrigatório!"/>
                 </i>
-            </h:panelGrid>
-
-            <p:separator/>
-
-            <h:panelGrid columns="2">
-                <p:commandButton icon="pi pi-check" value="Salvar" actionListener="#{usuarioBean.salvar()}" update="mensagem"/>
-                <p:button value="Voltar" outcome="usuario-listagem.xhtml?faces-redirect=true"/>
             </h:panelGrid>
 
         </p:panel>

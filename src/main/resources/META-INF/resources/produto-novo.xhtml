@@ -23,36 +23,39 @@
         <p:panel header="Cadastro de Produto">
             <p:messages id="mensagem" closable="true" />
 
-            <h:panelGrid columns="1">
-                <p:outputLabel value="Nome" />
+            <p:toolbar style="background:transparent">
+                <p:toolbarGroup align="right">
+                    <p:button icon="pi pi-arrow-left" outcome="produto-listagem.xhtml?faces-redirect=true"/>
+                    <p:commandButton icon="pi pi-save" actionListener="#{produtoBean.salvar()}" update="mensagem"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:separator/>
+
+            <h:panelGrid columns="2">
+                <i class="pi pi-fw pi-shopping-bag"/>
                 <p:inputText maxlength="50" size="15" value="#{produtoBean.produto.nome}" required="true" requiredMessage="O campo Nome é obrigatório!"/>
             </h:panelGrid>
 
-            <h:panelGrid columns="1">
-                <p:outputLabel value="Preço" />
+            <h:panelGrid columns="2">
+                <i class="pi pi-fw pi-money-bill"/>
                 <p:inputNumber placeholder="0.00" maxlength="50" size="15" value="#{produtoBean.produto.preco}" required="true" requiredMessage="O campo Nome é obrigatório!" modifyValueOnWheel="false" />
             </h:panelGrid>
 
             <h:panelGrid columns="1">
-                <p:outputLabel value="Descrição" />
-                <p:inputTextarea rows="3" cols="30" counter="display" maxlength="100" counterTemplate="{0} characters remaining." autoResize="true"
+                <p:inputTextarea  placeholder="Escreva uma descrição aqui..." rows="3" cols="30" counter="display" maxlength="100" counterTemplate="{0} characters remaining." autoResize="true"
                                  value="#{produtoBean.produto.descricao}" required="true" requiredMessage="O campo Descrição é obrigatório!"/>
                 <h:outputText id="display" class="block"/>
             </h:panelGrid>
 
-            <h:panelGrid columns="1">
-            <p:outputLabel value="Categoria"/>
+            <h:panelGrid columns="2">
+                <i class="pi pi-fw pi-tag"/>
             <p:selectOneMenu value="#{produtoBean.produto.categoria}" converter="omnifaces.SelectItemsConverter"
                              required="true" requiredMessage="O campo categoria é obrigatória">
                 <f:selectItem noSelectionOption="true" itemLabel="Selecione uma Categoria"/>
                 <f:selectItems value="#{produtoBean.categorias}" var="cursorcat" itemLabel="#{cursorcat.nome}"
                                itemValue="#{cursorcat}"/>
             </p:selectOneMenu>
-            </h:panelGrid>
-
-            <h:panelGrid columns="2">
-                <p:commandButton icon="pi pi-check" value="Salvar" actionListener="#{produtoBean.salvar()}" update="mensagem"/>
-                <p:button value="Voltar" outcome="produto-listagem.xhtml?faces-redirect=true"/>
             </h:panelGrid>
 
         </p:panel>

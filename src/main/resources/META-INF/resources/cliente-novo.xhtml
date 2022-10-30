@@ -23,14 +23,18 @@
         <p:panel header="Cadastro de Cliente">
             <p:messages id="mensagem" closable="true" />
 
+            <p:toolbar style="background:transparent">
+                <p:toolbarGroup align="right">
+                    <p:button icon="pi pi-arrow-left" outcome="cliente-listagem.xhtml?faces-redirect=true"/>
+                    <p:commandButton icon="pi pi-save" actionListener="#{clienteBean.salvar()}" update="mensagem"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:separator/>
+
             <h:panelGrid columns="2">
                 <i class="pi pi-fw pi-star-fill"/>
                 <p:inputText placeholder="Nome" maxlength="50" size="15" value="#{clienteBean.cliente.nome}" required="true" requiredMessage="O campo Nome é obrigatório!"/>
-            </h:panelGrid>
-
-            <h:panelGrid columns="2">
-                <p:commandButton icon="pi pi-check" value="Salvar" actionListener="#{clienteBean.salvar()}" update="mensagem"/>
-                <p:button value="Voltar" outcome="cliente-listagem.xhtml?faces-redirect=true"/>
             </h:panelGrid>
 
         </p:panel>

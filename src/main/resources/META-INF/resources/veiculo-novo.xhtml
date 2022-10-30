@@ -23,6 +23,16 @@
         <p:panel header="Cadastro de Veículos">
             <p:messages id="mensagem" closable="true" />
 
+            <p:toolbar style="background:transparent">
+                <p:toolbarGroup align="right">
+                    <p:button icon="pi pi-arrow-left" outcome="veiculo-listagem.xhtml?faces-redirect=true"/>
+                    <p:commandButton icon="pi pi-save" actionListener="#{veiculoBean.salvar()}" update="mensagem"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:separator/>
+
+
             <h:panelGrid columns="2">
                 <i class="pi pi-fw pi-heart-fill">
                     <p:inputText placeholder="Modelo" inline="false" showTime="true" timeInput="true" maxlength="50" size="15"
@@ -45,13 +55,6 @@
                 <f:selectItems value="#{veiculoBean.vendedores}" var="cursorveiculo" itemLabel="#{cursorveiculo.nome}"
                                itemValue="#{cursorveiculo}"/>
             </p:selectOneMenu>
-            </h:panelGrid>
-
-            <p:separator/>
-
-            <h:panelGrid columns="2">
-                <p:commandButton icon="pi pi-check" value="Salvar" actionListener="#{veiculoBean.salvar()}" update="mensagem"/>
-                <p:button value="Voltar" outcome="veiculo-listagem.xhtml?faces-redirect=true"/>
             </h:panelGrid>
 
         </p:panel>

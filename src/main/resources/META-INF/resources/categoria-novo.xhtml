@@ -23,22 +23,25 @@
         <p:panel header="Cadastro de Categeoria">
             <p:messages id="mensagem" closable="true" />
 
-            <h:panelGrid columns="1">
-                <p:outputLabel value="Categoria" />
+            <p:toolbar style="background:transparent">
+                <p:toolbarGroup align="right">
+                    <p:button icon="pi pi-arrow-left" outcome="categoria-listagem.xhtml?faces-redirect=true"/>
+                    <p:commandButton icon="pi pi-save" actionListener="#{categoriaBean.salvar()}" update="mensagem"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:separator/>
+
+            <h:panelGrid columns="2">
+                <i class="pi pi-fw pi-tag"/>
                     <p:inputText maxlength="50" size="15" value="#{categoriaBean.categoria.nome}" required="true" requiredMessage="O campo Nome é obrigatório!"/>
             </h:panelGrid>
 
             <h:panelGrid columns="1">
-            <p:outputLabel value="Descrição" />
-                <p:inputTextarea rows="3" cols="30" counter="display" maxlength="100" counterTemplate="{0} characters remaining." autoResize="true"
+                <p:inputTextarea placeholder="Escreva uma descrição aqui..." rows="3" cols="30" counter="display" maxlength="100" counterTemplate="{0} characters remaining." autoResize="true"
                                  value="#{categoriaBean.categoria.descricao}" required="true" requiredMessage="O campo Descrição é obrigatório!"/>
                 <h:outputText id="display" class="block"/>
            </h:panelGrid>
-
-            <h:panelGrid columns="2">
-                <p:commandButton icon="pi pi-check" value="Salvar" actionListener="#{categoriaBean.salvar()}" update="mensagem"/>
-                <p:button value="Voltar" outcome="categoria-listagem.xhtml?faces-redirect=true"/>
-            </h:panelGrid>
 
         </p:panel>
     </h:form>

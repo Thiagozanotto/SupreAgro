@@ -23,7 +23,16 @@
         <p:panel header="Novo Pedido">
             <p:messages id="mensagem" closable="true" />
 
-            <h:panelGrid columns="1">
+            <p:toolbar style="background:transparent">
+                <p:toolbarGroup align="right">
+                    <p:button icon="pi pi-arrow-left" outcome="pedido-listagem.xhtml?faces-redirect=true"/>
+                    <p:commandButton icon="pi pi-save" actionListener="#{pedidoBean.salvar()}" update="mensagem"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <p:separator/>
+
+            <h:panelGrid columns="1" >
                 <p:outputLabel value="Observação" />
                 <p:inputTextarea placeholder="Digite uma observação aqui..." rows="3" cols="30" counter="display" maxlength="100" counterTemplate="{0} caracteres." autoResize="true"
                                  value="#{pedidoBean.pedido.observacao}" required="true" requiredMessage="O campo Obersavação é obrigatório!"/>
@@ -46,11 +55,10 @@
                     </h:panelGrid>
                 </p:outputPanel>
             </h:panelGrid>
-
-            <h:panelGrid columns="1">
-                <p:outputLabel value="Valor Total - R$" />
+            <h:panelGrid columns="2">
+                <i class="pi pi-fw pi-money-bill"/>
                 <h:panelGrid id="atual" columns="2">
-                    <p:inputText maxlength="50" size="15" value="#{pedidoBean.valor}" requiredMessage="O campo Valor Total não é possivel ser calculado!">
+                    <p:inputText placeholder="Valor Total - R$" maxlength="50" size="15" value="#{pedidoBean.valor}" requiredMessage="O campo Valor Total não é possivel ser calculado!">
 
                     </p:inputText>
 
@@ -58,8 +66,8 @@
                 </h:panelGrid>
             </h:panelGrid>
 
-            <h:panelGrid columns="1">
-            <p:outputLabel value="Cliente"/>
+            <h:panelGrid columns="2">
+                <i class="pi pi-fw pi-star-fill"/>
             <p:selectOneMenu value="#{pedidoBean.pedido.cliente}" converter="omnifaces.SelectItemsConverter"
                              required="true" requiredMessage="O campo cliente é obrigatória">
                 <f:selectItem noSelectionOption="true" itemLabel="Selecione um Cliente"/>
@@ -68,8 +76,8 @@
             </p:selectOneMenu>
             </h:panelGrid>
 
-            <h:panelGrid columns="1">
-                <p:outputLabel value="Vendedor"/>
+            <h:panelGrid columns="2">
+                <i class="pi pi-fw pi-user"/>
                 <p:selectOneMenu value="#{pedidoBean.pedido.vendedor}" converter="omnifaces.SelectItemsConverter"
                                  required="true" requiredMessage="O campo vendedor é obrigatória">
                     <f:selectItem noSelectionOption="true" itemLabel="Selecione um Vendedor"/>
