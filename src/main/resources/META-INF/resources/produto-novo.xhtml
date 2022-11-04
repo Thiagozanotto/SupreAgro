@@ -34,7 +34,7 @@
 
             <h:panelGrid columns="2">
                 <i class="pi pi-fw pi-shopping-bag"/>
-                <p:inputText maxlength="50" size="15" value="#{produtoBean.produto.nome}" required="true" requiredMessage="O campo Nome é obrigatório!"/>
+                <p:inputText placeholder="Nome" maxlength="50" size="15" value="#{produtoBean.produto.nome}" required="true" requiredMessage="O campo Nome é obrigatório!"/>
             </h:panelGrid>
 
             <h:panelGrid columns="2">
@@ -43,7 +43,7 @@
             </h:panelGrid>
 
             <h:panelGrid columns="1">
-                <p:inputTextarea  placeholder="Escreva uma descrição aqui..." rows="3" cols="30" counter="display" maxlength="100" counterTemplate="{0} characters remaining." autoResize="true"
+                <p:inputTextarea placeholder="Escreva uma descrição aqui..." rows="3" cols="30" counter="display" maxlength="100" counterTemplate="{0} characters remaining." autoResize="true"
                                  value="#{produtoBean.produto.descricao}" required="true" requiredMessage="O campo Descrição é obrigatório!"/>
                 <h:outputText id="display" class="block"/>
             </h:panelGrid>
